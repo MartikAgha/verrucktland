@@ -6,7 +6,7 @@ var shapeScale = 50;
 var numberConcentric;
 var currentSize;
 var infinitessimalShift = 1;
-var i, j, k;
+var i, j;
 
 var colors = ['green', 'darkViolet', 'yellow', 'blue'];
 
