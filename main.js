@@ -16,6 +16,10 @@ var shiftSpeed = 5;
 var colorShift = 0;
 
 var mainShape = 0;
+var slider;
+var mainPower = 1;
+var mainFactor = 3;
+var verrucktMode = false;
 
 
 window.onload = init();
@@ -28,7 +32,9 @@ function init() {
 	ctx.canvas.height = window.innerHeight;
 	pointCentreX = window.innerWidth*0.5;
 	pointCentreY = window.innerHeight*0.5;
-	numberConcentric = 3*Math.ceil(ctx.canvas.width/shapeScale);
+	numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
+	slider = document.getElementById('speedRange');
+	slider.oninput = function() { shiftSpeed = this.value; }
 	console.log(pointCentreX);
 	console.log(pointCentreY);
 	requestAnimationFrame(animate);
@@ -69,7 +75,7 @@ function drawCanvas(shift) {
 
 function drawTriangleCanvas(shift) {
 	for (i = numberConcentric; i >= 0; i--) {
-		currentSize = i*shapeScale + infinitessimalShift + shift;
+		currentSize = Math.pow(i, mainPower)*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
 		drawTriangle(currentSize, color);
@@ -91,7 +97,7 @@ function drawTriangle(scale, color) {
 
 function drawSquareCanvas(shift) {
 	for (i = numberConcentric; i >= 0; i--) {
-		currentSize = i*shapeScale + infinitessimalShift + shift;
+		currentSize = Math.pow(i, mainPower)*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
 		drawSquare(currentSize, color);
@@ -111,7 +117,7 @@ function drawSquare(scale, color) {
 
 function drawCircleCanvas(shift) {
 	for (i = numberConcentric; i >= 0; i--) {
-		currentSize = i*shapeScale + infinitessimalShift + shift;
+		currentSize = Math.pow(i, mainPower)*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
 		drawCircle(currentSize, color);
@@ -148,3 +154,18 @@ function changeToSquare() {
 function changeToCircle() {
 	mainShape = 2;
 }
+
+function switchVerruckt() {
+	if (verrucktMode) {
+		verrucktMode = false;
+		mainPower = 1;
+		mainFactor = 3;
+		numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
+	} else {
+		verrucktMode = true;
+		mainPower = 0.7;
+		mainFactor = 14;
+		numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
+	}
+}
+

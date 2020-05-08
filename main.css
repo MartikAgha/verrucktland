@@ -53,3 +53,12 @@ body {
 	font: 24px "Bitstream Vera Serif", serif;
 	float: center;
 }
+
+#verruckt {
+	background-image: linear-gradient(to top right, yellow, black);
+	color: darkRed;;
+	padding: 6px;
+	text-align: center;
+	font: 21px "Impact", serif;
+	float: center;
+}
