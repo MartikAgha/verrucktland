@@ -1,0 +1,55 @@
+h1 {
+	animation: blinkingText 1.2s infinite;
+	color: blue;
+	background-image: linear-gradient(to top right, green, white);
+	padding: 5px;
+	text-align: center ;
+	border-style: groove;
+	border: 12px solid red;
+	border-radius: 3px;
+	font: 40px "Bitstream Vera Serif", serif;
+}
+@keyframes blinkingText {
+	0%{  color: violet; }
+	20%{ color: red; }
+	40%{ color: orange; }
+	60%{ color: yellow; }
+	80%{ color lightGreen; }
+	100%{ color: transparent; }
+}
+canvas {
+	border: 2px red;
+}
+body {
+	background: purple;;
+}
+
+#buttonBox {
+	display: flex;
+	justify-content: center;
+}
+
+#square {
+	background-color: darkRed;
+	color: yellow;
+	padding: 8px;
+	text-align: center;
+	font: 24px "Bitstream Vera Serif", serif;
+}
+
+#triangle {
+	background-color: darkGreen;
+	color: yellow;
+	padding: 8px;
+	text-align: center;
+	font: 24px "Bitstream Vera Serif", serif;
+}
+ 
+#circle {
+	background-color: darkViolet;
+	color: yellow;
+	padding: 8px;
+	text-align: center;
+	font: 24px "Bitstream Vera Serif", serif;
+	float: center;
+}
