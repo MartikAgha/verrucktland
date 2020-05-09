@@ -1,7 +1,8 @@
 var canvas; 
 var ctx;
 var pointCentreX, pointCentreY;
-var shapeScale = 50;
+var baseShapeScale = 50;
+var shapeScale;
 
 var numberConcentric;
 var currentSize;
@@ -32,9 +33,13 @@ function init() {
 	ctx.canvas.height = window.innerHeight;
 	pointCentreX = window.innerWidth*0.5;
 	pointCentreY = window.innerHeight*0.5;
+	shapeScale = Math.floor(baseShapeScale/shiftSpeed)*shiftSpeed;
 	numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
 	slider = document.getElementById('speedRange');
-	slider.oninput = function() { shiftSpeed = this.value; }
+	slider.oninput = function() { 
+		shiftSpeed = this.value;
+		shapeScale = Math.floor(baseShapeScale/shiftSpeed)*shiftSpeed;
+	 }
 	console.log(pointCentreX);
 	console.log(pointCentreY);
 	requestAnimationFrame(animate);
@@ -161,11 +166,13 @@ function switchVerruckt() {
 		mainPower = 1;
 		mainFactor = 3;
 		numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
+		document.getElementById('verruckt').value = "Verrückt";
 	} else {
 		verrucktMode = true;
-		mainPower = 0.7;
-		mainFactor = 14;
+		mainPower = 0.75;
+		mainFactor = 12;
 		numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
+		document.getElementById('verruckt').value = "Zurück";
 	}
 }
 
