@@ -40,8 +40,7 @@ function init() {
 		shiftSpeed = this.value;
 		shapeScale = Math.floor(baseShapeScale/shiftSpeed)*shiftSpeed;
 	 }
-	console.log(pointCentreX);
-	console.log(pointCentreY);
+	document.getElementById('clown_audio').play();
 	requestAnimationFrame(animate);
 }
 
@@ -166,13 +165,13 @@ function switchVerruckt() {
 		mainPower = 1;
 		mainFactor = 3;
 		numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
-		document.getElementById('verruckt').value = "Verrückt";
+		document.getElementById('verruckt').innerHTML = "Verrückt";
 	} else {
 		verrucktMode = true;
 		mainPower = 0.75;
 		mainFactor = 12;
 		numberConcentric = mainFactor*Math.ceil(ctx.canvas.width/shapeScale);
-		document.getElementById('verruckt').value = "Zurück";
+		document.getElementById('verruckt').innerHTML = "Zurück!!!";
 	}
 }
 
