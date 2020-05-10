@@ -13,7 +13,7 @@ var colors = ['green', 'darkViolet', 'yellow', 'blue'];
 
 var shift = 0;
 var timeStep = 0;
-var shiftSpeed = 5;
+var shiftSpeed = 15;
 var colorShift = 0;
 
 var mainShape = 0;
@@ -79,7 +79,9 @@ function drawCanvas(shift) {
 
 function drawTriangleCanvas(shift) {
 	for (i = numberConcentric; i >= 0; i--) {
-		currentSize = Math.pow(i, mainPower)*shapeScale + infinitessimalShift + shift;
+		var continuousShift = (verrucktMode) ? shift/shapeScale : 0.0;
+		var factor = Math.pow(i + continuousShift, mainPower)
+		currentSize = factor*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
 		drawTriangle(currentSize, color);
@@ -101,7 +103,9 @@ function drawTriangle(scale, color) {
 
 function drawSquareCanvas(shift) {
 	for (i = numberConcentric; i >= 0; i--) {
-		currentSize = Math.pow(i, mainPower)*shapeScale + infinitessimalShift + shift;
+		var continuousShift = (verrucktMode) ? shift/shapeScale : 0.0;
+		var factor = Math.pow(i + continuousShift, mainPower)
+		currentSize = factor*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
 		drawSquare(currentSize, color);
@@ -121,7 +125,9 @@ function drawSquare(scale, color) {
 
 function drawCircleCanvas(shift) {
 	for (i = numberConcentric; i >= 0; i--) {
-		currentSize = Math.pow(i, mainPower)*shapeScale + infinitessimalShift + shift;
+		var continuousShift = (verrucktMode) ? shift/shapeScale : 0.0;
+		var factor = Math.pow(i + continuousShift, mainPower)
+		currentSize = factor*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
 		drawCircle(currentSize, color);
