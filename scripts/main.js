@@ -1,3 +1,5 @@
+import { drawTriangle, drawCircle, drawSquare } from './scripts/drawShapes.js';
+
 var canvas; 
 var ctx;
 var pointCentreX, pointCentreY;
@@ -57,16 +59,6 @@ function animate() {
 	requestAnimationFrame(animate)
 }
 
-function initialCanvas() {
-	numberConcentric = 2*Math.ceil(ctx.canvas.width/shapeScale);
-	for (i = numberConcentric; i >= 0; i--) {
-		currentSize = i*shapeScale + infinitessimalShift;
-		color = colors[i % colors.length];
-		drawTriangle(currentSize, color);
-	}
-	requestAnimationFrame(animate);
-}
-
 function drawCanvas(shift) {
 	if (mainShape == 0) {
 		drawTriangleCanvas(shift);
@@ -84,21 +76,8 @@ function drawTriangleCanvas(shift) {
 		currentSize = factor*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
-		drawTriangle(currentSize, color);
+		drawTriangle(currentSize, color, canvas, pointCentreX, pointCentreY);
 	}
-}
-
-function drawTriangle(scale, color) {
-	var context = canvas.getContext('2d');
-	context.fillStyle = color;
-	context.beginPath();
-	context.moveTo(pointCentreX, 
-				   pointCentreY + scale/Math.pow(3, 0.5));
-	context.lineTo(pointCentreX + 0.5*scale,
-				   pointCentreY - scale/2/Math.pow(3, 0.5));
-	context.lineTo(pointCentreX - 0.5*scale,
-				   pointCentreY - scale/2/Math.pow(3, 0.5));
-	context.fill();
 }
 
 function drawSquareCanvas(shift) {
@@ -108,19 +87,8 @@ function drawSquareCanvas(shift) {
 		currentSize = factor*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
-		drawSquare(currentSize, color);
+		drawSquare(currentSize, color, canvas, pointCentreX, pointCentreY);
 	}
-}
-
-function drawSquare(scale, color) {
-	var context = canvas.getContext('2d');
-	context.fillStyle = color;
-	upperLeftX = pointCentreX - 0.5*scale;
-	upperLeftY = pointCentreY - 0.5*scale;
-	context.fillRect(upperLeftX,
-					 upperLeftY,
-					 scale,
-					 scale);
 }
 
 function drawCircleCanvas(shift) {
@@ -130,21 +98,8 @@ function drawCircleCanvas(shift) {
 		currentSize = factor*shapeScale + infinitessimalShift + shift;
 		j = numberConcentric - i
 		color = colors[(j + colorShift) % colors.length];
-		drawCircle(currentSize, color);
+		drawCircle(currentSize, color, canvas, pointCentreX, pointCentreY);
 	}
-}
-
-function drawCircle(scale, color) {
-	var context = canvas.getContext('2d');
-	context.fillStyle = color;
-	context.beginPath();
-	context.arc(pointCentreX, 
-				pointCentreY, 
-				scale,
-				0,
-				2*Math.PI);
-		 
-	context.fill();
 }
 
 function changePosition(evt) {
