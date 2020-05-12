@@ -1,5 +1,3 @@
-import { drawTriangle, drawCircle, drawSquare } from './scripts/drawShapes.js';
-
 var canvas; 
 var ctx;
 var pointCentreX, pointCentreY;
@@ -136,3 +134,28 @@ function switchVerruckt() {
 	}
 }
 
+function drawTriangle(scale, color, canvas, pX, pY) {
+	var context = canvas.getContext('2d');
+	context.fillStyle = color;
+	context.beginPath();
+	context.moveTo(pX, pY + scale/Math.pow(3, 0.5));
+	context.lineTo(pX + 0.5*scale, pY - scale/2/Math.pow(3, 0.5));
+	context.lineTo(pX - 0.5*scale, pY - scale/2/Math.pow(3, 0.5));
+	context.fill();
+}
+
+function drawSquare(scale, color, canvas, pX, pY) {
+	var context = canvas.getContext('2d');
+	context.fillStyle = color;
+	upperLeftX = pX - 0.5*scale;
+	upperLeftY = pY - 0.5*scale;
+	context.fillRect(upperLeftX, upperLeftY, scale, scale);
+}
+
+function drawCircle(scale, color, canvas, pX, pY) {
+	var context = canvas.getContext('2d');
+	context.fillStyle = color;
+	context.beginPath();
+	context.arc(pX,	pY, scale, 0, 2*Math.PI);
+	context.fill();
+}
